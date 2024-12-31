@@ -39,11 +39,9 @@ spec:
               memory: "256Mi"
   strategy:
     canary:
-      maxSurge: 1
-      maxUnavailable: 1
-      # steps:
-      #   - setWeight: 20
-      #   - pause: { duration: 5m }
-      #   - setWeight: 50
-      #   - pause: { duration: 10m }
-      #   - setWeight: 100
+      steps:
+        - setWeight: 20
+        - pause: { duration: 20s }
+        - setWeight: 50
+        - pause: { duration: 2m }
+        - setWeight: 100
