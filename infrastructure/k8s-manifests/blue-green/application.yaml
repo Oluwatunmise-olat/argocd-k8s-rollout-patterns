@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: rollout-patterns-app
+  namespace: argocd
+spec:
+  project: rollout-patterns-project
+  source:
+    repoURL: "git@github.com:Oluwatunmise-olat/argocd-k8s-rollout-patterns.git"
+    targetRevision: main
+    path: infrastructure/k8s-manifests/blue-green
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
+    automated:
+      selfHeal: true
+      prune: true

@@ -1,0 +1,19 @@
+{
+  "name": "argocd-k8s-rollout-patterns",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oluwatunmise-olat/argocd-k8s-rollout-patterns.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Oluwatunmise-olat/argocd-k8s-rollout-patterns/issues"
+  },
+  "homepage": "https://github.com/Oluwatunmise-olat/argocd-k8s-rollout-patterns#readme"
+}

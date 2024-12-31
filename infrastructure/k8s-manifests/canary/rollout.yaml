@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: rolling-update-application
+  labels:
+    app: rollout-patterns
+spec:
+  replicas: 2
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: canary-rollout
+  template:
+    metadata:
+      labels:
+        app: canary-rollout
+    spec:
+      containers:
+        - name: core
+          image: ""
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3401
+          env:
+            - name: PORT
+              value: "3401"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3401
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+  strategy:
+    canary:
+      maxSurge: 2
+      maxUnavailable: 1
+      steps:
+        - setWeight: 20
+        - pause: { duration: 5m }
+        - setWeight: 50
+        - pause: { duration: 10m }
+        - setWeight: 100

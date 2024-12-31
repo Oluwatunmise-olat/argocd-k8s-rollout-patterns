@@ -1,0 +1,50 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: rolling-update-application
+  labels:
+    app: rollout-patterns
+spec:
+  replicas: 2
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: blue-green-rollout
+  template:
+    metadata:
+      labels:
+        app: blue-green-rollout
+    spec:
+      containers:
+        - name: core
+          image: "oluwatunmiseolat/rollout-patterns"
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3401
+          env:
+            - name: PORT
+              value: "3401"
+            - name: NODE_ENV
+              value: production
+            - name: VERSION
+              value: v1.1
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3401
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+  strategy:
+    blueGreen:
+      activeService: blue-green-rollout-active-svc
+      previewService: blue-green-rollout-preview-svc
+      autoPromotionEnabled: false
+      # previewReplicaCount: 1
+      # scaleDownDelaySeconds: 300

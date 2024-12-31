@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: blue-green-rollout-preview-svc
+spec:
+  type: NodePort
+  selector:
+    app: blue-green-rollout
+  ports:
+    - protocol: TCP
+      port: 33001
+      targetPort: 3401

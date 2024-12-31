@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: blue-green-ingress
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: blue-green.rollout.xyz
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blue-green-rollout-active-svc
+                port:
+                  number: 3401
