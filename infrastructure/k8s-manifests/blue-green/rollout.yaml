@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: core
-          image: "oluwatunmiseolat/rollout-patterns:v2"
+          image: "oluwatunmiseolat/rollout-patterns:v3"
           imagePullPolicy: Always
           ports:
             - containerPort: 3401
@@ -26,8 +26,6 @@ spec:
               value: "3401"
             - name: NODE_ENV
               value: production
-            - name: VERSION
-              value: v1.1
           livenessProbe:
             httpGet:
               path: /health
