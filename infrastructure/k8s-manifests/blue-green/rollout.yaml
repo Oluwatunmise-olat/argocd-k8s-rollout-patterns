@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: core
-          image: "oluwatunmiseolat/rollout-patterns:v1"
+          image: "oluwatunmiseolat/rollout-patterns:v2"
           imagePullPolicy: Always
           ports:
             - containerPort: 3401
