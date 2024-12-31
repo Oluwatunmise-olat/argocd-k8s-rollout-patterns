@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: core
-          image: ""
+          image: "oluwatunmiseolat/rollout-patterns:canary-v1"
           imagePullPolicy: Always
           ports:
             - containerPort: 3401
@@ -39,11 +39,11 @@ spec:
               memory: "256Mi"
   strategy:
     canary:
-      maxSurge: 2
+      maxSurge: 1
       maxUnavailable: 1
-      steps:
-        - setWeight: 20
-        - pause: { duration: 5m }
-        - setWeight: 50
-        - pause: { duration: 10m }
-        - setWeight: 100
+      # steps:
+      #   - setWeight: 20
+      #   - pause: { duration: 5m }
+      #   - setWeight: 50
+      #   - pause: { duration: 10m }
+      #   - setWeight: 100
