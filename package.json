@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Oluwatunmise-olat/argocd-k8s-rollout-patterns/issues"
   },
-  "homepage": "https://github.com/Oluwatunmise-olat/argocd-k8s-rollout-patterns#readme"
+  "homepage": "https://github.com/Oluwatunmise-olat/argocd-k8s-rollout-patterns#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
