@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: canary-ingress
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
     - host: canary.rollout.xyz
       http:
