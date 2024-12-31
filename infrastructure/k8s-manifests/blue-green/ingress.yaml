@@ -14,4 +14,4 @@ spec:
               service:
                 name: blue-green-rollout-active-svc
                 port:
-                  number: 3401
+                  number: 80
