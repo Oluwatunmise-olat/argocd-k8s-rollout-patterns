@@ -18,6 +18,18 @@ app.get("/health", (req, res) => {
   });
 });
 
+app.get("/health-metric", (req, res) => {
+  // Simulated connection health
+  const dbConnectionHealthy = true;
+  const redisConnectionHealthy = true;
+
+  const isHealthy = dbConnectionHealthy && redisConnectionHealthy;
+
+  const message = isHealthy ? "Dependencies healthy" : "Dependencies unhealthy";
+
+  res.status(200).json({ status: isHealthy, message });
+});
+
 app.get("/status", (req, res) => {
   res.json({
     status: "(Canary): up",

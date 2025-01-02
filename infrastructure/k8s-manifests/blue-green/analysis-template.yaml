@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: success-rate
+spec:
+  metrics:
+    - name: webmetric
+      successCondition: result == true
+      failureCondition: result == false
+      interval: 15s
+      count: 5
+      failureLimit: 3
+      provider:
+        web:
+          insecure: true # Skip tls for non prod environment
+          url: http://blue-green-rollout-preview-svc.default.svc/health-metric
+          timeoutSeconds: 20
+          jsonPath: "{$.status}"
