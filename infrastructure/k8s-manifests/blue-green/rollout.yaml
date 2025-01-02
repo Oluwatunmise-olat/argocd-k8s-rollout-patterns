@@ -44,8 +44,8 @@ spec:
       activeService: blue-green-rollout-active-svc
       previewService: blue-green-rollout-preview-svc
       autoPromotionEnabled: false
-      prePromotionAnalysis:
-        templates:
-          - templateName: success-rate
+      # prePromotionAnalysis:
+      #   templates:
+      #     - templateName: success-rate
       # previewReplicaCount: 1
       # scaleDownDelaySeconds: 300
